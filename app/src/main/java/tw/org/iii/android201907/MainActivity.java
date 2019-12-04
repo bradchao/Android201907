@@ -53,14 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void test4(View view) {
-        try (FileInputStream fin = openFileInput("newbrad.txt");
-             InputStreamReader ins = new InputStreamReader(fin);
-             BufferedReader br = new BufferedReader(ins)) {
+        try {
+            FileInputStream fin = openFileInput("newbrad.txt");
+            InputStreamReader ins = new InputStreamReader(fin);
+            BufferedReader br = new BufferedReader(ins);
             String line;
             while ( (line = br.readLine()) != null) {
                 Log.v("brad", line);
             }
-
+            br.close();
         }catch (Exception e){
             Log.v("brad",e.toString());
         }

@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
+    private int i = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void test3(View view) {
         try {
-            FileOutputStream fout = openFileOutput("brad.txt", MODE_PRIVATE);
-
+            FileOutputStream fout = openFileOutput("newbrad.txt", MODE_APPEND);
+            fout.write((i++ + " Hello, World\n").getBytes());
+            fout.flush();
             fout.close();
             Toast.makeText(this, "Save OK2", Toast.LENGTH_SHORT).show();
         }catch (Exception e){

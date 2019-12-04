@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp;
@@ -51,11 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void test4(View view) {
-        try (FileInputStream fin = openFileInput("newbrad.txt")) {
-            byte[] buf = new byte[64]; int len;
-            while ( (len = fin.read(buf)) != -1){
-                Log.v("brad", new String(buf, 0, len));
+        try (FileInputStream fin = openFileInput("newbrad.txt");
+             InputStreamReader ins = new InputStreamReader(fin);
+             BufferedReader br = new BufferedReader(ins)) {
+            String line;
+            while ( (line = br.readLine()) != null) {
+                Log.v("brad", line);
             }
+
         }catch (Exception e){
             Log.v("brad",e.toString());
         }

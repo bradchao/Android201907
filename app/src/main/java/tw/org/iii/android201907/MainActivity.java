@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,5 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Save OK", Toast.LENGTH_SHORT).show();
     }
     public void test2(View view) {
+        int stage = sp.getInt("stage", 0);
+        String name = sp.getString("username", "nobody");
+        boolean sound = sp.getBoolean("sound", true);
+        Log.v("brad", name + ":" + stage + ":" + sound);
     }
 }

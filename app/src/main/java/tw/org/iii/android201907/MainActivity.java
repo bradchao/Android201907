@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void test4(View view) {
-
+        try (FileInputStream fin = openFileInput("newbrad.txt")) {
+            byte[] buf = new byte[64]; int len;
+            while ( (len = fin.read(buf)) != -1){
+                Log.v("brad", new String(buf, 0, len));
+            }
+        }catch (Exception e){
+            Log.v("brad",e.toString());
+        }
     }
 }

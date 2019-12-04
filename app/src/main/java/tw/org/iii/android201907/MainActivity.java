@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
+
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
@@ -32,5 +34,20 @@ public class MainActivity extends AppCompatActivity {
         String name = sp.getString("username", "nobody");
         boolean sound = sp.getBoolean("sound", true);
         Log.v("brad", name + ":" + stage + ":" + sound);
+    }
+
+    public void test3(View view) {
+        try {
+            FileOutputStream fout = openFileOutput("brad.txt", MODE_PRIVATE);
+
+            fout.close();
+            Toast.makeText(this, "Save OK2", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Log.v("brad",e.toString());
+        }
+
+    }
+    public void test4(View view) {
+
     }
 }
